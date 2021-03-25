@@ -26,5 +26,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - run: |
-          echo latest release: ${{ steps.get_pull_request_details.outputs.data }}
-          echo ${{ steps.get_pull_request_details.outputs.data }} | jq '.'
+          pr="${{ steps.get_pull_request_details.outputs.data }}"
+          echo "${{ fromJSON(pr.id) }}"
+          echo "${{ fromJSON(pr.user.login) }}"
