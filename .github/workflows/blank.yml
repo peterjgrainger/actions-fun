@@ -28,4 +28,8 @@ jobs:
           
       - run: |
           id="${{ fromJSON(steps.pr.outputs.data).id }}"
-          login="${{ fromJSON(steps.pr.outputs.data).user.login }}"
+          user="${{ fromJSON(steps.pr.outputs.data).user.login }}"
+          sourceBranch="${{ fromJSON(steps.pr.outputs.data).head.ref }}"
+          sha="${{ fromJSON(steps.pr.outputs.data).head.sha }}"
+          targetBranch="${{ fromJSON(steps.pr.outputs.data).base.ref }}"
+          title="${{ fromJSON(steps.pr.outputs.data).title }}"
