@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: octokit/request-action@v2.x
-        id: get_pull_request_details
+        id: pr
         with:
           route: GET /repos/{owner}/{repo}/pulls/{pull_number}
           owner: peterjgrainger
@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
+          
       - run: |
-          pr="${{ steps.get_pull_request_details.outputs.data }}"
-          echo "${{ fromJSON(pr.id) }}"
-          echo "${{ fromJSON(pr.user.login) }}"
+          id="${{ fromJSON(steps.pr.outputs.data.id }}"
+          login="${{ fromJSON(steps.pr.outputs.data.user.login) }}"
