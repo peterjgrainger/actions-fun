@@ -18,8 +18,9 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: get_pull_request_details
         with:
-          route: GET /repos/{ownerRepo}/pulls/{pull_number}
-          ownerRepo: peterjgrainger/actions-fun
+          route: GET /repos/{owner}/{repo}/pulls/{pull_number}
+          owner: peterjgrainger
+          repo: actions-fun
           pull_number: 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
